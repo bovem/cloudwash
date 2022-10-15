@@ -54,6 +54,7 @@ def cleanup_providers(ctx, dry, version):
             f"\n<<<<<<< Running the cleanup script in {'DRY' if dry else 'ACTION'} RUN mode >>>>>>>"
         )
 
+@click.option("-s", "--settings-file", is_flag=True, help="Path to settings file")
 
 @cleanup_providers.command(help="Cleanup GCE provider")
 @common_options

@@ -13,7 +13,7 @@ RUN yum -y clean all
 # Installing cloudwash
 USER 1001
 WORKDIR "${HOME}"
-RUN git clone --depth=1 https://github.com/RedHatQE/cloudwash.git && \
+RUN git clone --depth=1 https://github.com/bovem/cloudwash.git --branch=adding-settings-path && \
     cd ${CLOUDWASH_DIR} && \
     pip install --upgrade pip && \
     pip install . && \
