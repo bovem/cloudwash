@@ -41,20 +41,22 @@ def common_options(func):
 )
 @click.option("--version", is_flag=True, help="Get installed version of cloudwash in system")
 @click.option("-d", "--dry", is_flag=True, help="Only show what will be removed from Providers!")
+@click.option(
+    "-s", "--settings-file", type=str, default=settings.settings_file, help="Path to settings file"
+)
 @click.pass_context
-def cleanup_providers(ctx, dry, version):
+def cleanup_providers(ctx, dry, version, settings_file):
     if version:
         import pkg_resources
 
         cloudwash_version = pkg_resources.get_distribution("cloudwash").version
         click.echo(f"Version: {cloudwash_version}")
-        click.echo(f"Settings File: {settings.settings_file}")
+        click.echo(f"Settings File: {settings_file}")
     if ctx.invoked_subcommand:
         logger.info(
             f"\n<<<<<<< Running the cleanup script in {'DRY' if dry else 'ACTION'} RUN mode >>>>>>>"
         )
 
-@click.option("-s", "--settings-file", is_flag=True, help="Path to settings file")
 
 @cleanup_providers.command(help="Cleanup GCE provider")
 @common_options
